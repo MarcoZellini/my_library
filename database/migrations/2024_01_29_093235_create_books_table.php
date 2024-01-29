@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title', 100);
-            $table->string('cover_image')->nullable();
             $table->string('author', 50);
             $table->string('isbn')->unique();
             $table->text('plot')->nullable();
