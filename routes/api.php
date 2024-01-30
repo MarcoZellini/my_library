@@ -18,5 +18,6 @@ use App\Http\Controllers\API\LoginController;
 
 // Route::resource('books', BookController::class);
 Route::post('/books', [BookController::class, 'index']);
+Route::post('/books/create', [BookController::class, 'store']);
 Route::post('/books/{id}', [BookController::class, 'show']);
 Route::post('/login', [LoginController::class, 'login']);

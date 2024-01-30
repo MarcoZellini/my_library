@@ -11,7 +11,7 @@ class Book extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'autor', 'isbn', 'plot', 'total_readings'];
+    protected $fillable = ['user_id', 'title', 'author', 'isbn', 'plot', 'total_readings'];
 
     public function user(): BelongsTo
     {

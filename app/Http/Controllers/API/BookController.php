@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 
 class BookController extends Controller
@@ -26,8 +27,33 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
+        /* return response()->json([
+            'success' => true,
+            'result' => $request->all()
+        ]); */
+
+        $val_data = $request->validated();
+        /* if ($val_data->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $request->errors()
+            ]);
+        } */
+
+        $book = Book::create([
+            'user_id' => $val_data['user_id'],
+            'title' => $val_data['title'],
+            'author' => $val_data['author'],
+            'isbn' => $val_data['isbn'],
+            'plot' => $val_data['plot'],
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'book' => $book
+        ]);
     }
 
     /**
