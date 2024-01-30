@@ -35,7 +35,7 @@ class BookController extends Controller
      */
     public function show(Request $request, string $book_id)
     {
-        $request_user_id = $request->query('user_id');
+        $request_user_id = $request->input('user_id');
 
         $book = Book::where('id', $book_id)->first();
 

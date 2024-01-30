@@ -24,7 +24,8 @@ class LoginController extends Controller
                 'success' => true,
                 'result' => [
                     'user_id' => $user->id,
-                    // 'books' => Book::where('user_id', $user->id)->get(),
+                    'user_name' => $user->name,
+                    'user_lastname' => $user->lastname,
                 ]
             ]);
         } else {
