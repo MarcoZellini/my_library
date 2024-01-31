@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Book;
+use App\Http\Requests\StoreUserRequest;
 
-class LoginController extends Controller
+class UserController extends Controller
 {
     /**
      * Method to check the login parameters
@@ -32,6 +33,34 @@ class LoginController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'This email is not registered!'
+            ]);
+        }
+    }
+
+    /**
+     * Method to register a new user
+     */
+    public function register(StoreUserRequest $request)
+    {
+        $val_data = $request->validated();
+
+
+        if ($val_data) {
+
+            $user = User::create([
+                'name' => $val_data['name'],
+                'lastname' => $val_data['lastname'],
+                'email' => $val_data['email'],
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'result' => $user
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'error' => 'Invalid Data!'
             ]);
         }
     }

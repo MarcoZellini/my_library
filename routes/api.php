@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\BookController;
-use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +23,5 @@ Route::post('/books/{id}', [BookController::class, 'show']);
 Route::patch('/books/{id}/edit', [BookController::class, 'update']);
 Route::patch('/books/{id}/update_readings', [BookController::class, 'update_total_readings']);
 Route::delete('/books/{id}/delete', [BookController::class, 'destroy']);
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
