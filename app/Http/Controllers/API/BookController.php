@@ -20,7 +20,7 @@ class BookController extends Controller
         return response()->json([
             'success' => true,
             'result' => [
-                'books' => Book::where('user_id', $user_id)->paginate(12)
+                'books' => Book::where('user_id', $user_id)->orderByDesc('id')->paginate(12)
             ]
         ]);
     }
@@ -92,27 +92,59 @@ class BookController extends Controller
         ]);
     }
 
+    public function update_total_readings(Request $request, string $book_id)
+    {
+
+        $request_user_id = $request->input('user_id');
+
+        $book = Book::where('id', $book_id)->first();
+
+        if ($book->user_id === (int)$request_user_id) {
+
+            $readings_counter = $book->total_readings;
+            $readings_counter++;
+
+            $book->update([
+                'total_readings' => $readings_counter
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'result' => $book
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'error' => "You cannot access this book!"
+            ]);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, string $book_id)
     {
-        $request_user_id = $request->query('user_id');
+        $request_user_id = $request->input('user_id');
+
+        /* return response()->json([
+            'request' => $request_user_id
+        ]); */
 
         $book = Book::where('id', $book_id)->first();
 
-        if ($book->user_id === $request_user_id) {
+        if ($book->user_id === (int)$request_user_id) {
             $book->delete();
         } else {
             return response()->json([
                 'success' => false,
-                'result' => "You cannot access this book!"
+                'error' => "You cannot access this book!"
             ]);
         }
 
         return response()->json([
             'success' => true,
-            'error' => 'Book deleted successfully!'
+            'result' => 'Book deleted successfully!'
         ]);
     }
 }

@@ -26,7 +26,7 @@ class UpdateBookRequest extends FormRequest
             'user_id' => [Rule::exists('users', 'id')],
             'title' => ['bail', 'required', 'string', 'min:3', 'max:100'],
             'author' => ['bail', 'required', 'string', 'min:3', 'max:50'],
-            'isbn' => ['bail', 'required', 'string', 'min:13', 'max:13', Rule::unique('books')->ignore($this->book)],
+            'isbn' => ['bail', 'required', 'string', 'min:13', 'max:13', Rule::unique('books')->ignore($this->id)],
             'plot' => ['bail'],
         ];
     }

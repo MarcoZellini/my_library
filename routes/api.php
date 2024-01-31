@@ -20,5 +20,7 @@ use App\Http\Controllers\API\LoginController;
 Route::post('/books', [BookController::class, 'index']);
 Route::post('/books/create', [BookController::class, 'store']);
 Route::post('/books/{id}', [BookController::class, 'show']);
-Route::post('/books/{id}/edit', [BookController::class, 'update']);
+Route::patch('/books/{id}/edit', [BookController::class, 'update']);
+Route::patch('/books/{id}/update_readings', [BookController::class, 'update_total_readings']);
+Route::delete('/books/{id}/delete', [BookController::class, 'destroy']);
 Route::post('/login', [LoginController::class, 'login']);
