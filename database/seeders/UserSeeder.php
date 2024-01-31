@@ -19,6 +19,11 @@ class UserSeeder extends Seeder
             'lastname' => 'Admin',
             'email' => 'admin@library.it'
         ]);
+        User::create([
+            'name' => 'Marco',
+            'lastname' => 'Zellini',
+            'email' => 'zellinimarco@gmail.com'
+        ]);
 
         for ($i = 0; $i < 10; $i++) {
 

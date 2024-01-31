@@ -16,7 +16,7 @@ class BookSeeder extends Seeder
     {
         for ($i = 0; $i < 200; $i++) {
             Book::create([
-                'user_id' => rand(2, 11),
+                'user_id' => rand(2, 12),
                 'title' => $faker->sentence(),
                 'author' => $faker->name(),
                 'isbn' => $faker->isbn13(),
