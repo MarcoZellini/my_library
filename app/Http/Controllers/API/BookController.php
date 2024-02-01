@@ -96,16 +96,14 @@ class BookController extends Controller
     {
 
         $request_user_id = $request->input('user_id');
+        $total_readings = $request->input('total_readings');
 
         $book = Book::where('id', $book_id)->first();
 
         if ($book->user_id === (int)$request_user_id) {
 
-            $readings_counter = $book->total_readings;
-            $readings_counter++;
-
             $book->update([
-                'total_readings' => $readings_counter
+                'total_readings' => $total_readings
             ]);
 
             return response()->json([
